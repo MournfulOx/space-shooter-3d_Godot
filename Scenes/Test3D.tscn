@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cfx4e4yeh075y"]
+
+[ext_resource type="Script" uid="uid://cal60s0d88gwd" path="res://scenes/test_3d.gd" id="1_cvbyu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvbyu"]
+sky_top_color = Color(0.07409186, 0.09487986, 0.12814042, 1)
+sky_horizon_color = Color(0.2173303, 0.21688765, 0.21885642, 1)
+ground_bottom_color = Color(0.12717119, 0.104612626, 0.0792271, 1)
+ground_horizon_color = Color(0.2173303, 0.21688765, 0.21885642, 1)
+
+[sub_resource type="Sky" id="Sky_we11c"]
+sky_material = SubResource("ProceduralSkyMaterial_cvbyu")
+
+[sub_resource type="Environment" id="Environment_urjuk"]
+background_mode = 2
+sky = SubResource("Sky_we11c")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvbyu"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.8
+roughness = 0.2
+
+[sub_resource type="TorusMesh" id="TorusMesh_cvbyu"]
+material = SubResource("StandardMaterial3D_cvbyu")
+
+[node name="Test3D" type="Node3D" unique_id=769915243]
+script = ExtResource("1_cvbyu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=305708990]
+environment = SubResource("Environment_urjuk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=441542894]
+transform = Transform3D(-0.8660254, -0.43301275, 0.25000006, -0.017083423, 0.5253332, 0.8507251, -0.49970812, 0.7324787, -0.46234924, 0, 7.705848, -10.608385)
+light_energy = 3.0
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=513289341]
+transform = Transform3D(0.2499237, -0.42644832, 0.8692986, 0, 0.8977895, 0.44042492, -0.96826553, -0.110072635, 0.22437887, 2.676724, 1.2735591, 0.74579024)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=591481101]
+mesh = SubResource("TorusMesh_cvbyu")
